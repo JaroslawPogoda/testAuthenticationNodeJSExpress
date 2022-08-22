@@ -5,6 +5,8 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const {config} = require("./config");
 const {User, addUser, deletebyUsername} = require("./Models/UserModel")
+const userRouter = require("./Router/UserRouter");
+app.use('/user',userRouter);
 app.use(express.json());
 const posts = [
   {
@@ -33,15 +35,6 @@ const users = [
 app.get("/posts", (req, res) => {
 
   res.json(posts);
-});
-app.get("/users", async(req, res) => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-  res.json(users);
 });
 app.post("/user/register", async (req, res) => {
   try {
