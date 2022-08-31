@@ -53,4 +53,7 @@ const addUser = async (user) => {
 const deletebyUsername = async (username)=>{
     User.destroy({where: {username: username}})
 }
-module.exports = { User, addUser, deletebyUsername};
+const findByUsername = async (username)=>{
+  User.findOne({where: {username: username}})
+}
+module.exports = { User,findByUsername, addUser, deletebyUsername};
